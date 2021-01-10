@@ -15,9 +15,8 @@ from pickle import load
 import cv2
 import os
 import matplotlib.pyplot as plt
-from keras_preprocessing.image import img_to_array
+from keras_preprocessing.image import img_to_array,load_img
 import numpy as np
-
 
 def load_descriptions(filename):
 	# load all features
@@ -51,14 +50,22 @@ def generate_description(model, photo, wordtoix, ixtoword, max_length, evaluatio
     return final_sentence
 
 from tensorflow.keras.applications.xception import preprocess_input
-def get_encoder_features(image,model):
-  image = cv2.resize(image,(299,299))
+def get_encoder_features(path,model):
+  image = load_img(path, target_size=(299,299))
+  # convert to numpy array
   image = img_to_array(image)
+  # scale pixel values to [0, 1]
+  image = image.astype('float32')
+  #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+  #image = cv2.resize(image,(299,299))
+  #image = np.dstack([image[:,:,2],image[:,:,1],image[:,:,0]])
+  #image = img_to_array(image)
   # reshape data for the model
   image = np.expand_dims(image, axis=0)
   # prepare the image for the model
-  image = preprocess_input(image)
-  #image = image/image.max()
+  #image = preprocess_input(image)
+  image = image/255.
+
   # get features
   feature = model.predict(image, verbose=0)
   np.reshape(feature, feature.shape[1])
@@ -95,9 +102,8 @@ def upload():
 		file_path = os.path.join(
 			basepath, 'uploads', secure_filename(f.filename))
 		f.save(file_path)
-		img = cv2.imread(file_path)
-		plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-		feature = get_encoder_features(img,encoder_model)
+		#img = cv2.imread(file_path)
+		feature = get_encoder_features(file_path,encoder_model)
 		output = generate_description(decoder_model,feature, wordtoix, ixtoword, max_length)
 		return output
 	return None
