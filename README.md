@@ -19,4 +19,4 @@ Reference : https://www.tensorflow.org/api_docs/python/tf/keras/applications/Xce
 
 ### Decoder model:
 This is a sentence generation model. The sentence is generated word by word as shown in the example below
-![sentence-generator](https://github.com/dheerajreddy2020/Image-description-using-deep-learning/blob/master/Sentence-generator.PNG)
+![sentence-generation](https://github.com/dheerajreddy2020/Image-description-using-deep-learning/blob/master/Sentence-generator.PNG)
