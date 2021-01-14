@@ -6,7 +6,7 @@ You must have OpenCV, Tensorflow to run the deep-learning model and Flask (for A
 
 ### Project Structure
 This project has four major parts :
-1. app.py - This contains Flask APIs that receives employee details through GUI or API calls, computes the precited value based on our model and returns it.
+1. app.py - This contains Flask APIs that receives the uploaded image through GUI or API calls, and computes the precited sentence based on the model and returns it.
 2. templates - This folder contains the HTML template to allow user to upload images to generate a description.
 3. '.pkl' files - Two .pkl files which are the dictionaries to convert from word to embedding vector and from embedding vector to word.
 4. '.h5' files - Two .h5 files which are the deep learning models, one model is to create the features for encoder model
