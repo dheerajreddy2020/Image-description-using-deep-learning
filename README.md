@@ -18,5 +18,6 @@ In this project xception model is used as the encoder model to extract features 
 Reference : https://www.tensorflow.org/api_docs/python/tf/keras/applications/Xception
 
 ### Decoder model:
-This is a sentence generation model. The sentence is generated word by word as shown in the example below using the LSTM model to predict the next word.
+This is a sentence generation model. 
+The sentence is generated word by word as shown in the example below using the LSTM model to predict the next word.
 ![sentence-generation](https://github.com/dheerajreddy2020/Image-description-using-deep-learning/blob/master/Sentence-generator.PNG)
