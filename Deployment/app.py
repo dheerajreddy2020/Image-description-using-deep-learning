@@ -51,15 +51,15 @@ def generate_description(model, photo, wordtoix, ixtoword, max_length, evaluatio
 
 from tensorflow.keras.applications.xception import preprocess_input
 def get_encoder_features(path,model):
-  image = load_img(path, target_size=(299,299))
+  #image = load_img(path, target_size=(299,299))
   # convert to numpy array
-  image = img_to_array(image)
-  # scale pixel values to [0, 1]
-  image = image.astype('float32')
-  #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-  #image = cv2.resize(image,(299,299))
-  #image = np.dstack([image[:,:,2],image[:,:,1],image[:,:,0]])
   #image = img_to_array(image)
+  # scale pixel values to [0, 1]
+  #image = image.astype('float32')
+  image = cv2.imread(path)
+  image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+  image = cv2.resize(image,(299,299))
+  #image = image.astype('float32')
   # reshape data for the model
   image = np.expand_dims(image, axis=0)
   # prepare the image for the model
